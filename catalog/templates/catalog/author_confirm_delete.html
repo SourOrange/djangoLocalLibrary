@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Delete Author</h1>
+    <p>Are you sure you want to delete the author: {{ author }}?</p>
+    <form action="" method="post">{% csrf_token %}
+        {# <input type="submit" value="是的，我很肯定"> 这里用 bt 样式的 input #}
+        <input type="button" value="是的，删吧" class="btn btn-danger">
+        <a href="{% url 'authors' %}" role="button" class="btn btn-default">算了，我还是回去好了</a>
+    </form>
+{% endblock %}

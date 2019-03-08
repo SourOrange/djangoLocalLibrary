@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>Renew: {{ book_instance.book.title }}</h1>
+    <p>副本ID: {{ book_instance.id }}</p>
+    <p>Borrower: {{ book_instance.borrower }}</p>
+
+    {% if book_instance.is_overdue %}
+        <p class="text-danger">
+        Due Date: {{ book_instance.due_back }}, 已经过期啦同学, 赶紧续借吧！
+        </p>
+    {% else %}
+        <p>
+            Due Date: {{ book_instance.due_back }}
+        </p>
+    {% endif %}
+
+    <form action="" method="post">{% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="submit" value="确定">
+    </form>
+
+{% endblock %}

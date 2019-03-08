@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Author List</h1>
+    <ul>
+        {% for author in author_list %}
+        <li><a href="{{ author.get_absolute_url }}">{{ author }}</a> ({{ author.date_of_birth}})
+            {% if perms.catalog.can_mark_returned%}
+                - <a href="{% url 'author_update' author.id %}">更新作者</a>
+                - <a href="{% url 'author_delete' author.id %}">删除作者</a>
+            {% endif %}
+        </li>
+        {% empty %}
+            <li><p>There are no any authors here.</p></li>
+        {% endfor %}
+    </ul>
+    {% if perms.catalog.can_mark_returned %}
+        <ul>
+            <li><a href="{% url 'author_create' %}">添加作者</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}

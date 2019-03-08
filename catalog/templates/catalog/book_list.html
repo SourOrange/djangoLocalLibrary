@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Book List</h1>
+    <ul>
+    {% for book in book_list %}
+        {% comment %}
+           a 中的 href 应该是 book.get_absolute_url，不过你选择为空的话，则可以先进行
+            测试，也就是网页不会报错，相反，你设置了那个值后，你需要再进一步去写url和
+            视图函数
+        {% endcomment %}
+        <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.author }})
+            {% if perms.catalog.can_mark_returned %}
+             -- <a href="{% url 'book_update' book.id %}">更新图书</a>
+             -- <a href="{% url 'book_delete' book.id %}">删除图书</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li><p>There are no books in the library.</p></li>
+    {% endfor %}
+    </ul>
+    {% if perms.catalog.can_mark_returned %}
+    <ul>
+        <li><a href="{% url 'book_create' %}">添加图书</a></li>
+    </ul>
+    {% endif %}
+{% endblock%}

@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Delete Book</h1>
+    <p>Are you sure you want to delete the book: {{ book }}?</p>
+    <form action="" method="post">{% csrf_token %}
+        <input type="submit" value="嗯，删吧" class="btn btn-danger">
+        <a href="{% url 'books' %}" role="button" class="btn btn-primary">算了，回去吧</a>
+    </form>
+{% endblock %}

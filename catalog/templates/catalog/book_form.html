@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <h1>请填写以下的图书书名以及内容</h1>
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="新增图书" class="btn btn-default">
+    </form>
+
+{% endblock %}

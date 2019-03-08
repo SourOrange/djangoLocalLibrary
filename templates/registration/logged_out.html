@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <p>登出!</p>
+    <a href="{% url 'login' %}">点击这里再次登陆</a>
+{% endblock %}
+
+{% comment %}
+    当我们试图输入 accounts/logout 后，发现会跳转到 后端管理页面的登出页面，这显然不是我们要看到的。
+    所以我们重新定义这个 登出的页面
+{% endcomment %}
